@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>機器學習核心觀念複習 - AI 學習知識庫</title>
+    <!-- 必須包含 Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 font-sans">
+    <main class="max-w-3xl mx-auto px-4 py-8 md:py-12 lg:py-16">
+        
+        <!-- 回到首頁導覽列 -->
+        <nav class="mb-8 md:mb-10">
+            <a href="../index.html" class="text-indigo-600 hover:text-indigo-800 hover:underline font-medium">← 回到首頁</a>
+        </nav>
+
+        <article>
+            <!-- 文章標題 -->
+            <h1 class="text-3xl md:text-4xl font-bold mb-6 text-gray-900">機器學習核心觀念複習與專題規劃</h1>
+
+            <p class="text-gray-700 leading-relaxed mb-8">
+                本篇筆記整理了機器學習第 1 至 7 章的核心觀念，並附帶期末專題的規劃方向建議，適合作為快速複習與實作參考。
+            </p>
+
+            <!-- Chapter 1 -->
+            <h2 class="text-2xl font-semibold mt-10 mb-4 text-indigo-600 border-b border-gray-200 pb-2">Chapter 1: 機器學習簡介 (ML Introduction)</h2>
+            <ul class="list-disc pl-6 space-y-2 text-gray-700 leading-relaxed mb-6">
+                <li><strong>機器學習的三大類型</strong>：監督式學習（Supervised learning）、非監督式學習（Unsupervised learning）與強化學習（Reinforcement learning）。</li>
+                <li><strong>監督式學習的兩大任務</strong>：分類（Classification）用於預測離散的類別標籤（如垃圾郵件分類）；迴歸（Regression）用於預測連續數值結果（如學生成績）。</li>
+                <li><strong>非監督式學習</strong>：處理沒有標籤的資料，主要任務如分群（Cluster analysis），讓群內的物件具有高度相似性。</li>
+                <li><strong>機器學習標準流程</strong>：包含資料預處理（特徵萃取、縮放）、學習（模型選擇、交叉驗證）、評估（效能指標）與預測新資料。</li>
+            </ul>
+
+            <!-- Chapter 2 -->
+            <h2 class="text-2xl font-semibold mt-10 mb-4 text-indigo-600 border-b border-gray-200 pb-2">Chapter 2: 訓練機器學習分類器 (Training ML Algorithms)</h2>
+            <ul class="list-disc pl-6 space-y-2 text-gray-700 leading-relaxed mb-6">
+                <li><strong>感知機 (Perceptron)</strong>：用於二元分類，透過計算特徵與權重的內積，搭配步階函數（Step function）輸出預測類別。</li>
+                <li><strong>收斂條件</strong>：感知機只有在資料為「線性可分（Linearly separable）」且學習率夠小的情況下才能保證收斂。</li>
+                <li><strong>自適應線性神經元 (Adaline)</strong>：使用連續的線性啟動函數與損失函數（如 SSE），並透過「梯度下降法（Gradient Descent）」來更新權重。</li>
+                <li><strong>梯度下降的變體</strong>：
+                    <ul class="list-circle pl-6 mt-2 space-y-1 text-gray-600">
+                        <li><strong>批次梯度下降 (Batch GD)</strong>：用完整訓練集更新一次權重，計算成本高。</li>
+                        <li><strong>隨機梯度下降 (SGD)</strong>：對每一筆樣本增量更新權重，收斂速度快，適合大數據與線上學習。</li>
+                        <li><strong>小批次學習 (Mini-batch)</strong>：折衷方案，每次使用一小批樣本進行更新。</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <!-- Chapter 3 -->
+            <h2 class="text-2xl font-semibold mt-10 mb-4 text-indigo-600 border-b border-gray-200 pb-2">Chapter 3: Scikit-learn 分類器之旅</h2>
+            <ul class="list-disc pl-6 space-y-2 text-gray-700 leading-relaxed mb-6">
+                <li><strong>邏輯斯迴歸 (Logistic Regression)</strong>：用於分類任務，透過 Sigmoid 函數輸出樣本屬於某類別的「機率」，適合處理線性不可分的問題。</li>
+                <li><strong>過度擬合 (Overfitting) 與 偏差-變異 (Bias-Variance)</strong>：
+                    <ul class="list-circle pl-6 mt-2 space-y-1 text-gray-600">
+                        <li><strong>過度擬合</strong>：模型過於複雜，導致在訓練集表現好，但泛化到測試集表現差，屬於「高變異（High variance）」。</li>
+                        <li><strong>修正方式 (正規化 Regularization)</strong>：可加入 L2 正規化（透過參數 C 或 λ 控制），C 值越小，正規化強度越強，會使特徵權重縮小以防止過擬合。</li>
+                    </ul>
+                </li>
+                <li><strong>支援向量機 (SVM)</strong>：優化目標是「最大化邊界（Maximize the margin）」，找出距離決策邊界最近的訓練樣本（支援向量）並最大化其距離，以此降低泛化誤差。
+                    <ul class="list-circle pl-6 mt-2 space-y-1 text-gray-600">
+                        <li><strong>非線性分類 (Kernel Trick)</strong>：利用核函數（如 RBF/高斯核函數）將資料映射到高維度空間，使其變為線性可分。</li>
+                    </ul>
+                </li>
+                <li><strong>K-近鄰演算法 (KNN)</strong>：屬於非參數（Non-parametric）與基於實例的學習，直接尋找距離最近的 K 個鄰居進行多數決，無需訓練模型參數。</li>
+            </ul>
+
+            <!-- Chapter 4 -->
+            <h2 class="text-2xl font-semibold mt-10 mb-4 text-indigo-600 border-b border-gray-200 pb-2">Chapter 4: 資料預處理 (Data Preprocessing)</h2>
+            <ul class="list-disc pl-6 space-y-2 text-gray-700 leading-relaxed mb-6">
+                <li><strong>特徵縮放 (Feature Scaling)</strong>：
+                    <ul class="list-circle pl-6 mt-2 space-y-1 text-gray-600">
+                        <li><strong>正規化 (Normalization)</strong>：通常指將特徵縮放到 [0, 1] 的區間 (Min-max scaling)。</li>
+                        <li><strong>標準化 (Standardization)</strong>：將特徵轉換為平均值為 0、標準差為 1 的常態分佈形式，更容易讓權重初始化為 0 的演算法進行學習。</li>
+                    </ul>
+                </li>
+                <li><strong>L1 正規化與特徵選擇</strong>：相較於 L2，L1 會產生「稀疏解（Sparse solutions）」，使得多數不重要特徵的權重變為 0，可作為特徵選擇技術，適合高維度資料。</li>
+            </ul>
+
+            <!-- Chapter 5 -->
+            <h2 class="text-2xl font-semibold mt-10 mb-4 text-indigo-600 border-b border-gray-200 pb-2">Chapter 5: 降維技術 (Dimensionality Reduction)</h2>
+            <ul class="list-disc pl-6 space-y-2 text-gray-700 leading-relaxed mb-6">
+                <li><strong>主成分分析 (PCA)</strong>：是一種「非監督式」演算法，透過尋找資料「最大變異」的方向（特徵向量）來建立新的特徵子空間，主要用於資料壓縮與視覺化。</li>
+                <li><strong>線性鑑別分析 (LDA)</strong>：是一種「監督式」演算法，目標是尋找能「最大化類別間可分性」的特徵軸，計算時會使用到類別間與類別內的散佈矩陣。</li>
+                <li><strong>非線性降維 (t-SNE)</strong>：針對非線性問題可使用 t-SNE 等流形學習技術來進行資料降維與視覺化。</li>
+            </ul>
+
+            <!-- Chapter 6 -->
+            <h2 class="text-2xl font-semibold mt-10 mb-4 text-indigo-600 border-b border-gray-200 pb-2">Chapter 6: 模型評估與超參數調校</h2>
+            <ul class="list-disc pl-6 space-y-2 text-gray-700 leading-relaxed mb-6">
+                <li><strong>K折交叉驗證 (K-fold Cross-validation)</strong>：將訓練集分成 K 等份，輪流驗證。不平衡資料建議使用「分層 K 折 (Stratified k-fold)」以保留各類別比例。</li>
+                <li><strong>學習曲線 (Learning curves)</strong>：透過繪製準確率與訓練樣本數的關係，可用來診斷模型是否面臨高偏差（Underfitting）或高變異（Overfitting）。</li>
+                <li><strong>評估指標 (Metrics)</strong>：
+                    <ul class="list-circle pl-6 mt-2 space-y-1 text-gray-600">
+                        <li><strong>混淆矩陣 (Confusion Matrix)</strong>：視覺化呈現 TP、TN、FP、FN。</li>
+                        <li>對於不平衡資料需使用 <strong>Precision（精確率）</strong>、<strong>Recall（召回率/TPR）</strong>與 <strong>F1-score</strong>。</li>
+                        <li><strong>ROC 曲線與 AUC</strong>：繪製 FPR 與 TPR 的關係，並計算曲線下面積（AUC）來評估整體效能。</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <!-- Chapter 7 -->
+            <h2 class="text-2xl font-semibold mt-10 mb-4 text-indigo-600 border-b border-gray-200 pb-2">Chapter 7: 總體學習分類器 (Ensemble Classifiers)</h2>
+            <ul class="list-disc pl-6 space-y-2 text-gray-700 leading-relaxed mb-6">
+                <li><strong>總體學習概念</strong>：結合多個基底分類器的預測結果，透過多數決機制產生比單一模型更精確且強健的結果。</li>
+                <li><strong>Bagging (裝袋法)</strong>：透過「重抽樣法 (取後放回)」抽取隨機樣本訓練分類器（如隨機森林），能有效降低模型變異數。</li>
+                <li><strong>Boosting (提升法)</strong>：後續的分類器會專注於學習前一個分類器分類錯誤的樣本。
+                    <ul class="list-circle pl-6 mt-2 space-y-1 text-gray-600">
+                        <li><strong>AdaBoost</strong>：根據預測錯誤調整樣本權重。</li>
+                        <li><strong>Gradient Boosting (梯度提升)</strong>：不修改樣本權重，而是讓下一棵樹擬合前一棵樹產生的「偽殘差 (Pseudo-residuals)」。</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <!-- 期末專題規劃 -->
+            <div class="mt-12 bg-indigo-50 rounded-lg p-6 border border-indigo-100">
+                <h2 class="text-2xl font-bold mb-4 text-indigo-800">期末專題規劃方向建議</h2>
+                <p class="text-indigo-900 mb-4">基於 1-7 章觀念的開發藍圖 (Roadmap) 作為專題大綱：</p>
+                
+                <ol class="list-decimal pl-6 space-y-4 text-indigo-900">
+                    <li>
+                        <strong>定義問題與資料收集 (Ch1)</strong>
+                        <ul class="list-disc pl-5 mt-1 space-y-1 text-indigo-800/80">
+                            <li>明確定義專題是「分類問題」(預測類別) 還是「迴歸問題」(預測數值)。</li>
+                            <li>資料來源：可參考課程使用的 UCI Machine Learning Repository。</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>資料預處理與特徵工程 (Ch4 & Ch5)</strong>
+                        <ul class="list-disc pl-5 mt-1 space-y-1 text-indigo-800/80">
+                            <li>說明將如何處理缺失值，以及如何將類別特徵編碼。</li>
+                            <li>切割訓練集與測試集 (如 80/20)，並套用標準化 (Standardization)。</li>
+                            <li>若特徵過多，提出將使用 PCA 進行非監督降維，或使用 L1 正規化/隨機森林進行特徵選擇。</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>模型選擇與訓練 (Ch3 & Ch7)</strong>
+                        <ul class="list-disc pl-5 mt-1 space-y-1 text-indigo-800/80">
+                            <li>規劃使用多種模型進行比較基準 (Baseline)，例如：Logistic Regression、SVM、KNN。</li>
+                            <li>為了提升表現，重點應用「總體學習 (Ensemble)」演算法，如 Random Forest 或 XGBoost (Gradient Boosting)，獲得更好的泛化能力。</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>模型評估與超參數調校 (Ch6)</strong>
+                        <ul class="list-disc pl-5 mt-1 space-y-1 text-indigo-800/80">
+                            <li>說明將使用 K-fold Cross-validation 來取得無偏差的效能估計。</li>
+                            <li>規劃使用 Grid Search 找出最佳的超參數 (如 SVM 的 C 值與 Kernel 選擇)。</li>
+                            <li>最終成果展示：繪製混淆矩陣、ROC曲線，並計算 F1-score 等指標（特別針對不平衡資料）。</li>
+                        </ul>
+                    </li>
+                </ol>
+            </div>
+
+        </article>
+    </main>
+</body>
+</html>
