@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大型語言模型 (LLM) 基礎概念 - AI 學習知識庫</title>
+    <!-- 必須包含 Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 font-sans">
+    <main class="max-w-3xl mx-auto px-4 py-8 md:py-12 lg:py-16">
+        
+        <!-- 回到首頁導覽列 -->
+        <nav class="mb-8 md:mb-10">
+            <a href="../index.html" class="text-indigo-600 hover:text-indigo-800 hover:underline font-medium">← 回到首頁</a>
+        </nav>
+
+        <article>
+            <!-- 文章標題 -->
+            <h1 class="text-3xl md:text-4xl font-bold mb-6 text-gray-900">大型語言模型 (LLM) 基礎概念與提示詞工程</h1>
+
+            <!-- 前言 -->
+            <p class="text-gray-700 leading-relaxed mb-8">
+                大型語言模型（Large Language Models, LLMs）是建立在深度學習架構上的自然語言處理模型。本篇筆記整理自 LLM Wiki，涵蓋了語言模型的核心運作原理，以及如何透過提示詞（Prompt）有效地與模型互動。
+            </p>
+
+            <!-- 核心段落：運作原理 -->
+            <h2 class="text-2xl font-semibold mt-10 mb-4 text-indigo-600 border-b border-gray-200 pb-2">1. LLM 的核心運作原理</h2>
+            <div class="space-y-4">
+                <p class="text-gray-700 leading-relaxed">
+                    LLM 的本質是一個「文字接龍」機器。當給定一段上下文時，模型會計算詞彙庫中每一個字詞作為「下一個字」出現的機率分佈，並挑選機率最高（或透過採樣策略挑選）的字詞輸出。
+                </p>
+                <ul class="list-disc pl-6 space-y-2 text-gray-700 leading-relaxed">
+                    <li><strong>Transformer 架構</strong>：目前主流的 LLM 皆基於 Transformer 架構，其核心機制「注意力機制 (Attention Mechanism)」能讓模型在處理當前字詞時，關注句子中其他相關的字詞，從而理解長文本的脈絡。</li>
+                    <li><strong>預訓練 (Pre-training)</strong>：在海量無標籤的文本數據上進行訓練，學習人類語言的語法、常識與邏輯。</li>
+                    <li><strong>微調 (Fine-tuning)</strong>：在特定任務的標註數據上進一步訓練，使其能夠遵循人類指令（如 InstructGPT）或具備特定領域知識。</li>
+                </ul>
+            </div>
+
+            <!-- 核心段落：提示詞工程 -->
+            <h2 class="text-2xl font-semibold mt-10 mb-4 text-indigo-600 border-b border-gray-200 pb-2">2. 提示詞工程 (Prompt Engineering)</h2>
+            <div class="space-y-4">
+                <p class="text-gray-700 leading-relaxed">
+                    提示詞工程是引導 LLM 產出預期結果的一門技術。一個好的提示詞可以大幅減少模型的幻覺（Hallucination），提高輸出的精確度。
+                </p>
+                <ul class="list-disc pl-6 space-y-2 text-gray-700 leading-relaxed">
+                    <li><strong>給予清晰的脈絡 (Context)</strong>：避免使用模糊的指令，應明確告知模型它的「角色」與「背景」。</li>
+                    <li><strong>少樣本提示 (Few-Shot Prompting)</strong>：在提示詞中提供 1 到 3 個優良的輸入/輸出範例，讓模型參考範例的格式與邏輯進行回答。</li>
+                    <li><strong>思維鏈 (Chain of Thought, CoT)</strong>：在指令中加入「請一步一步思考 (Let's think step by step)」，強迫模型展開推理過程，特別適用於數學或邏輯問題。</li>
+                </ul>
+                
+                <h3 class="text-lg font-semibold mt-6 mb-2 text-gray-800">提示詞範例對比：</h3>
+                <!-- 程式碼區塊：深色背景與圓角 -->
+                <pre class="bg-gray-800 text-gray-100 rounded-lg p-4 overflow-x-auto mb-4 text-sm md:text-base"><code>❌ 糟糕的提示詞：
+幫我寫一篇關於蘋果的文章。
+
+✅ 優秀的提示詞：
+你是一位專業的營養學家。請撰寫一篇約 300 字的短文，介紹「蘋果」對人體健康的 3 大好處。
+文章請使用親切、專業的語氣，並以重點條列的方式呈現。</code></pre>
+            </div>
+
+            <!-- 總結 -->
+            <h2 class="text-2xl font-semibold mt-10 mb-4 text-indigo-600 border-b border-gray-200 pb-2">3. 總結</h2>
+            <p class="text-gray-700 leading-relaxed mb-4">
+                理解 LLM 的運作限制與 Transformer 的注意力機制，是寫出優質提示詞的基礎。未來的 AI 應用開發（如 Vibe Coding），將越來越依賴開發者將複雜的系統邏輯轉譯為結構化且精準的自然語言提示詞。
+            </p>
+
+        </article>
+    </main>
+</body>
+</html>
